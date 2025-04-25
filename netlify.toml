@@ -1,0 +1,12 @@
+[build]
+  # Katalogen som ska publiceras (där mkdocs lägger resultatet)
+  publish = "site"
+
+  # Kommandot som Netlify ska köra för att bygga sajten
+  # 1. Installera paketen från requirements.txt
+  # 2. Bygg MkDocs-sajten
+  command = "pip install -r requirements.txt && mkdocs build"
+
+[build.environment]
+  # Ställ in Python-versionen baserat på runtime.txt
+  PYTHON_VERSION = "3.11" # Matcha versionen i runtime.txt
