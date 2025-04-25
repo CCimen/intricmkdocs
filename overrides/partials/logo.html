@@ -1,0 +1,9 @@
+{# overrides/partials/logo.html #}
+{# This overrides the default logo logic to correctly handle image paths #}
+{% if config.theme.icon.logo %}
+  <img src="{{ config.theme.icon.logo | url }}" alt="Logo" />
+{% else %}
+  {# Fallback to default icon logic if no image path is set #}
+  {% import ".icons/" ~ config.theme.icon.repo ~ ".svg" as logo %}
+  <span class="md-icon">{{ logo.svg() | safe }}</span>
+{% endif %}

@@ -1,0 +1,103 @@
+# mkdocs.yml - Uppdaterad och Korrigerad
+
+site_name: "Intric Dokumentation" # Ändrat här!
+site_description: "Användardokumentation för Intric" # Ändrat här!
+site_author: "Sundsvalls kommun / Intric Team"
+
+
+repo_url: https://github.com/sundsvallai/intric # T.ex. [https://github.com/din-organisation/ditt-repo](https://github.com/din-organisation/ditt-repo)
+repo_name: 'GitHub' # Eller GitLab, Bitbucket etc. (Namnet som visas på länken)
+edit_uri: 'edit/main/docs/' # Eller 'blob/main/docs/' för "View Source". Anpassa 'main' om du använder en annan branch. Anpassa /docs/ om dina filer ligger någon annanstans.
+
+extra:
+  platform_name: "Intric" # Behåll denna ifall ni vill referera till den i texten senare
+
+theme:
+  name: material
+  custom_dir: overrides # Används för anpassningar (t.ex. färger/typsnitt via CSS)
+  language: sv
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.expand
+    - navigation.sections # Lägg till denna rad
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+  palette: # Inställningar för ljust/mörkt läge
+    - media: "(prefers-color-scheme: light)"
+      scheme: default # Namn på ljust schema (används i extra.css)
+      toggle:
+        icon: material/brightness-auto
+        name: Byt till mörkt läge
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate # Namn på mörkt schema (används i extra.css)
+      toggle:
+        icon: material/brightness-auto
+        name: Byt till ljust läge
+  font: # Typsnittsinställningar
+    text: Arial
+    code: Roboto Mono
+  icon: # Logotyp och favicon (se till att filerna finns!)
+    logo: assets/images/logo.svg
+    favicon: assets/images/favicon.png
+
+extra_css: # Länk till anpassad CSS
+  - stylesheets/extra.css
+
+markdown_extensions: # Tillägg för extra Markdown-funktioner
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+      toc_depth: 3 # Visa rubriker ner till nivå H3 i innehållsförteckningen
+
+plugins: # Aktiverade plugins
+  - search # Inbyggd sökfunktion
+  - awesome-pages # För automatisk navigering (se nedan)
+  - minify
+  - mermaid2
+  - redirects
+  # - git-revision-date-localized: # Kommenterad bort för att slippa varningar
+  #     type: date
+  #     locale: sv
+  #     fallback_to_build_date: true
+  - glightbox: # För bildvisning
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: '100%'
+      height: auto
+      zoomable: true
+      draggable: true
+
+# nav: <-- VIKTIGT: Hela denna sektion är bortkommenterad
+#  - Hem: index.md
+#  - Kom igång:
+#      - Vad är en prompt?: kom-igang/vad-ar-en-prompt.md
+#      - Hur promptar man effektivt?: kom-igang/hur-promptar-man.md
+#  - Funktioner:
+#      - Assistenter:
+#          - Vad är en assistent?: funktioner/assistenter/vad-ar-en-assistent.md
+#          - Hur skapar man assistenter?: funktioner/assistenter/skapa-assistenter.md
+#          - Skillnad personlig vs Space: funktioner/assistenter/skillnad-personlig-vs-space.md
+#      - Spaces:
+#          - Vad är ett Space?: funktioner/spaces/vad-ar-ett-space.md
+#      - Kunskapsbaser:
+#          - Vad är crawling?: funktioner/kunskapsbaser/vad-ar-crawling.md
+#          # Borttagen: - Hur gör man crawling?: funktioner/kunskapsbaser/hur-gor-man-crawling.md
+# # Borttagen: - Om Intric: om.md

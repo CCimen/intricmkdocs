@@ -1,0 +1,50 @@
+.aider*
+/.vscode-server-insiders
+
+# Python virtual environment
+venv/
+.venv/
+env/
+.env/
+ENV/
+*/activate
+*/activate.bat
+*/activate.ps1
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# MkDocs build directory
+site/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE / Editor directories
+.idea/
+.vscode/
+
+# Other
+*.log
+*.pot
+*.pyc
+*.swp
+.DS_Store

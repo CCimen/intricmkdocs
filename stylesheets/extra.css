@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* stylesheets/extra.css */
+:root {
+  --md-text-font: "Arial";
+  --md-code-font: "Roboto Mono";
+}
+
+/* Rubriktypsnitt */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+}
+.md-nav__title {
+  font-family: "Raleway", sans-serif;
+}
+
+/* Färgvariabler för LJUST läge */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #005595;
+  --md-primary-fg-color--light: #0073B8;
+  --md-primary-fg-color--dark:  #004070;
+  --md-accent-fg-color:         #00733B;
+  --md-accent-fg-color--transparent: rgba(0, 115, 59, 0.1);
+
+  --md-default-fg-color:               #1F1F25;
+  --md-default-fg-color--light:        #444450;
+  --md-default-bg-color:               #FFFFFF;
+  --md-default-bg-color--light:        #FAFAFA;
+  --md-default-bg-color--lighter:      #F0F0F0;
+
+  --md-code-bg-color: #F0F0F0;
+  --md-admonition-fg-color: var(--md-default-fg-color);
+  --md-admonition-bg-color: var(--md-default-bg-color--lighter);
+--md-admonition-icon--info-color: var(--md-primary-fg-color);
+  --md-admonition-icon--tip-color: var(--md-accent-fg-color);
+  --md-admonition-icon--warning-color: #DB6900;
+  --md-admonition-icon--error-color: #B00020;
+}
+
+/* Färgvariabler för MÖRKT läge */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #CFE0EC;
+  --md-accent-fg-color:         #AAD4BF;
+  --md-accent-fg-color--transparent: rgba(170, 212, 191, 0.1);
+
+  --md-default-fg-color:               #FFFFFF;
+  --md-default-fg-color--light:        #E5E5E5;
+  --md-default-bg-color:               #2F2F3C;
+  --md-default-bg-color--light:        #444450;
+  --md-default-bg-color--lighter:      #1F1F25;
+--md-admonition-icon--info-color: var(--md-primary-fg-color);
+  --md-admonition-icon--tip-color: var(--md-accent-fg-color);
+  --md-admonition-icon--warning-color: #DB6900;
+  --md-admonition-icon--error-color: #B00020;
+
+  --md-code-bg-color: #1F1F25;
+  --md-admonition-fg-color: var(--md-default-fg-color);
+  --md-admonition-bg-color: var(--md-default-bg-color--light);
+}
