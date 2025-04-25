@@ -4,18 +4,31 @@ title: Hur promptar man effektivt?
 
 # Hur promptar man effektivt?
 
-Att skriva bra prompts är en iterativ process. Börja enkelt och förbättra steg för steg.
+En bra prompt = *mål + kontext + format + ton + begränsningar*.
 
-## Steg för effektiv prompting
+| Steg | Fråga dig själv | Exempel |
+|------|-----------------|---------|
+| **1. Mål** | Vad vill jag ha? | “Sammanfatta texten” |
+| **2. Kontext** | Vad behöver AI:n veta? | “Texten handlar om GDPR” |
+| **3. Format** | Hur vill tôi ha ответ? | “Punktlista” |
+| **4. Roll** | Ur vems synvinkel? | “Som dataskyddsjurist” |
+| **5. Begränsning** | Något som ska undvikas? | “Max 150 ord” |
 
-1. Formulera ett tydligt mål: vad vill du uppnå?
-2. Ge relevant kontext: bakgrundsinformation eller regler.
-3. Specificera format: t.ex. punktlista, tabell eller berättande text.
-4. Definiera en roll: t.ex. "Agera som en kommunikationsspecialist..."
-5. Sätt begränsningar: vad AI:n inte ska inkludera.
+=== "Före / Efter"
+    **Före**  
+    > “Förklara GDPR.”
 
-[![Prompt-exempel](assets/images/prompt-exempel.png)](assets/images/prompt-exempel.png)
-*Exempel på prompt i Intric.*
+    **Efter**  
+    ```markdown
+    Agera som dataskyddsjurist och förklara
+    GDPR för nyanställda på max 150 ord.
+    Använd punktlista och enkel svenska.
+    ```
 
-!!! tip "Iterera och testa"
-    Testa olika varianter av din prompt, utvärdera svaren och justera för att förbättra resultatet.
+![Prompt-exempel](../assets/images/prompt-exempel.png){ width="550" }
+
+---
+
+### Relaterade ämnen
+- [Vad är en prompt?](vad-ar-en-prompt.md)
+- [Skapa assistenter](../assistenter/skapa-assistenter.md)

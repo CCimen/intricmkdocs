@@ -4,114 +4,117 @@ title: Vad är en assistent?
 
 # Vad är en assistent?
 
-En **AI-assistent** i Intric är en chat-baserad agent som använder en språkmodell för att utföra specifika uppgifter utifrån dina instruktioner. Assistenter kombinerar:
+En **assistent** i Intric är en _förkonfigurerad_ AI-chatbot som redan vet:
 
-- **Systemprompt:** Grundläggande instruktioner som definierar assistentens roll och beteende.  
-- **AI-modell:** Det underliggande språksystemet som genererar svar.  
-- **Kunskapsbas (valfritt):** Extern information som assistenten kan hämta data från för mer relevanta och korrekta svar.  
+1. **Vem den ska vara** – definieras genom en **systemprompt**  
+2. **Vilken motor den ska använda** – valet av en **AI-modell**  
+3. **Vilken fakta den får stöd av** – via **bilagor** eller en **kunskaps­bas** (RAG)
 
-Med en AI-assistent kan du:
-- Automatisera repetitiva textuppgifter  
-- Sammanfatta eller analysera dokument  
-- Skapa anpassade arbetsflöden för olika användarbehov
+Genom att använda en assistent slipper du upprepa samma instruktioner varje gång, vilket garanterar konsekventa och effektiva svar.
 
-## Viktiga komponenter i en assistent
+---
 
-En Intric-assistent består av flera komponenter som du kan anpassa för att skapa den perfekta AI-lösningen för dina behov:
+## Vad kan en assistent göra?
 
-### Allmänna inställningar
+<div class="grid cards" markdown>
+- :material-note-text-multiple-outline:{ .md-icon .lg } **Sammanfatta**  
+  Dra in ett dokument och få en punktlista på sekunder.
+- :material-message-question-outline:{ .md-icon .lg } **Besvara FAQ**  
+  Hämta svar direkt från interna policydokument – dygnet runt.
+- :material-lightbulb-outline:{ .md-icon .lg } **Brainstorma**  
+  Generera kreativa idéer för kampanjer eller möten.
+</div>
 
-!!! info "Allmänna inställningar"
-    Dessa inställningar definierar assistentens grundläggande identitet och beteende.
+---
 
-#### Namn och beskrivning
+## Huvudkomponenter
 
-**Namn** är det som visas för användarna och bör tydligt indikera assistentens syfte eller roll.
+### 1. Systemprompt *(Roll & Regler)*
 
-**Beskrivning** är en kort introduktion som visas när en användare startar en ny session med assistenten. En bra beskrivning förklarar:
-- Vad assistenten är designad att hjälpa med
-- Eventuella begränsningar i dess kunskap eller kapacitet
-- Hur användaren bäst interagerar med den
+!!! info "Vad är en systemprompt?"
+    Det är assistentens **regelbok**. Du definierar vilken roll den ska ha, vad den får säga och vilka begränsningar som gäller.  
+    **Exempel:**
 
-#### Prompt (Instruktioner)
+    ```markdown
+    Du är HR-expert och svarar på frågor om semester.  
+    - Tonen ska vara vänlig men formell  
+    - Om du är osäker, hänvisa till hr@företag.se
+    ```
 
-**Prompt** är de grundläggande instruktioner som styr assistentens beteende och svarsstil. Detta är vad som kallas "systemprompt" och skickas till AI-modellen innan varje konversation.[^1]
+### 2. AI-modell *(Motor)*
 
-[^1]: Till skillnad från användarens frågor, är systemprompt en dold instruktion som alltid finns med i bakgrunden och styr assistentens grundläggande beteende.
+Välj en modell som motsvarar dina behov. Exempel:
 
-!!! tip "Promptoptimering"
-    En välskriven prompt är nyckeln till en effektiv assistent. Se [Hur promptar man effektivt?](../../kom-igang/hur-promptar-man.md) för tips om hur du skapar bättre instruktioner.
+| Modelltyp           | Passar bäst för         | Kommentar                |
+|---------------------|-------------------------|--------------------------|
+| **Allmän LLM**      | Vanlig textgenerering   | T.ex. GPT-4, ChatGPT      |
+| **Kodspecificerad** | Kodgranskning, felsökning | Ex. Code Llama           |
+| **Domäntränad**     | Nischad domänkunskap    | Kräver egen hostning     |
 
-### Bilagor och kunskapskällor
+!!! tip
+    För de flesta är standardmodellen ett bra utgångsläge. Byt ut om du behöver snabbare, mer kostnadseffektiva eller mer domänanpassade svar.
 
-För att göra din assistent verkligt användbar kan du utöka dess förmågor med externa resurser:
+### 3. Datakällor *(Fakta)*
 
-#### Attachments (Bilagor)
+Datakällan kan levereras på två huvudsakliga sätt:
 
-**Attachments** är filer som alltid skickas med till AI-modellen i varje konversation. Detta är användbart för:
+|                        | **Bilagor**             | **Kunskaps­källor (RAG)**          |
+|------------------------|:-----------------------:|:---------------------------------:|
+| **Hur skickas data?**  | Alltid med varje prompt | Hämtas "on-demand" via crawling   |
+| **Volym**              | Upp till ≈ 50 sidor      | Kan omfatta hundratusentals sidor |
+| **Kostnad**            | Hög tokenanvändning      | Lägre tack vare cachelagring      |
+| **Uppdatering**        | Uppdateras manuellt      | Uppdateras automatiskt enligt schema |
 
-- Mallar som assistenten ska följa
-- Referensdokument som innehåller viktiga riktlinjer
-- Strukturerade data som assistenten alltid ska ha tillgång till
+!!! note "När ska du välja vad?"
+    *Bilagor* fungerar bäst för korta policies eller mallar som **alltid** behövs, medan *kunskaps­källor* (RAG) är optimala för stora eller kontinuerligt uppdaterade datamängder.
 
-Bilagor skickas direkt till AI-modellen i varje prompt, vilket gör dem ideala för information som alltid behövs, men kan öka token-användningen.
+---
 
-#### Knowledge (Kunskapskällor)
+## AI-inställningar (Finjustering)
 
-**Knowledge** är externa informationskällor som assistenten kan söka i efter relevant information vid behov. Till skillnad från bilagor hämtas denna information dynamiskt genom [RAG-teknik](../kunskapsbaser/vad-ar-rag.md).
+| Inställning         | Funktion                                            | Rekommendation                            |
+|---------------------|-----------------------------------------------------|-------------------------------------------|
+| **Temperature**     | 0 = mycket faktabaserat, 1 = mycket kreativt        | 0.2–0.4 för support/svar, 0.7+ för idéer    |
+| **Model behavior**  | Exempel: _Default_, _Creative_, _Deterministic_      | Anpassa efter uppgiftens krav             |
+| **Max tokens**      | Bestämmer hur långt svaret får bli                  | Sätt en gräns för att undvika höga kostnader|
 
-Kunskapskällor kan vara:
-- **Collections:** Mappar med dokument (PDF, CSV, TXT, etc.)
-- **Websites:** Crawlade webbplatser med nyttig information
+---
 
-!!! info "Knowledge vs. Attachments"
-    **Knowledge** används för omfattande information som endast behövs ibland och hämtas selektivt med RAG-teknik.
-    
-    **Attachments** skickas alltid med varje prompt och är lämpliga för kortare, kritisk information som alltid behövs.
+## Insights (valfritt)
 
-### AI-inställningar
+!!! warning "Datainsamling"
+    Om du aktiverar loggning av frågor och svar får du insikter i:
+    - Vilka ämnen som är mest populära  
+    - Kvaliteten på svaren  
+    - Eventuella luckor i din kunskaps­bas  
 
-AI-inställningar styr hur den underliggande språkmodellen fungerar:
+    **Notera:** Användare bör informeras att konversationer sparas om denna funktion aktiveras.
 
-#### Completion model
+---
 
-**Completion model** är den AI-modell som används för att bearbeta assistentens input och generera svar. Olika modeller har olika förmågor, styrkor och begränsningar gällande:
+## Skapa din egen assistent – på 30 sekunder
 
-- Språkförmåga och kvalitet
-- Kunskap (träningsdata)
-- Specialiseringar (kod, text, kalkylark, etc.)
-- Säkerhet och pålitlighet
+1. Gå till **Assistenter → Skapa assistent**.
+2. Namnge din assistent och skriv in en **systemprompt**.
+3. Välj önskad **AI-modell**.
+4. Lägg till en **bilaga** eller **kunskaps­källa** (om det behövs).
+5. Klicka på **Spara** – så är din assistent klar!
 
-#### Model behavior
+---
 
-**Model behavior** kontrollerar hur modellen genererar svar genom inställningar som:
+## Vanliga frågor
 
-- **Default:** Balanserad mellan kreativitet och konsekvens
-- **Creative:** Mer varierade och kreativa svar, bra för brainstorming
-- **Deterministic:** Mer konsekventa svar, idealisk för procedurella uppgifter
-- **Custom:** Anpassade parametrar för specifika behov
+| Fråga                          | Kort svar                                  |
+|--------------------------------|--------------------------------------------|
+| _Kan jag kopiera en assistent?_    | Ja, välj **Duplicera** i listan.             |
+| _Kan jag byta modell i efterhand?_  | Öppna assistenten och gå till **AI-inställningar**. |
+| _Hur delar jag med teamet?_         | Skapa eller flytta assistenten till ett **Space**.  |
 
-Den viktigaste parametern inom model behavior är **temperature** som reglerar slumpmässighet:
-- **Låg (0):** Mer deterministiska, fokuserade och konsekventa svar
-- **Hög (2):** Mer kreativa, varierade och oförutsägbara svar
+---
 
-### Publikationsinställningar
+### Nästa steg
 
-#### Insights
-
-**Insights** är en administratörsfunktion som samlar in användningsdata om assistenten. När aktiverad kan Space-administratörer och redaktörer se:
-
-- Vilka frågor som ställts till assistenten
-- Hur ofta assistenten används
-- Användningsmönster över tid
-
-Detta är värdefullt för att förbättra assistenten baserat på verklig användning.
-
-## Nästa steg
-
-För att lära dig mer om hur du arbetar med assistenter, utforska dessa resurser:
-
-- [Hur skapar man assistenter?](skapa-assistenter.md)
-- [Skillnad mellan personlig yta och Space](skillnad-personlig-vs-space.md)
-- [Vad är RAG?](../kunskapsbaser/vad-ar-rag.md)
+- [Skapa assistenter – steg för steg](skapa-assistenter.md)  
+- [Hur promptar man effektivt?](../../kom-igang/hur-promptar-man.md)  
+- [Vad är RAG?](../kunskapsbaser/vad-ar-rag.md)  
 - [Vad är crawling?](../kunskapsbaser/vad-ar-crawling.md)

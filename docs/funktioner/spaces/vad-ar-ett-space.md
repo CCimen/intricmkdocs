@@ -4,53 +4,154 @@ title: Vad är ett Space?
 
 # Vad är ett Space?
 
-Ett **Space** i Intric är en **delad digital arbetsyta** designad för samarbete kring AI-tillämpningar inom team, projekt eller hela avdelningar. Istället för att varje användare arbetar isolerat i sin personliga yta, möjliggör Spaces gemensamt arbete från idé till färdig lösning.
+Ett **Space** är en **delad arbetsyta** i Intric där ett team kan:
 
-[![Översikt av Spaces i Intric](assets/images/space-exempel.png)](assets/images/space-exempel.png)
-*När du klickar på "Spaces" ser du de samarbetsytor du har tillgång till.*
+* bygga och testa AI-assistenter tillsammans  
+* dela data i en gemensam kunskapsbank  
+* styra roller, rättigheter och AI-modeller efter säkerhetsklassning  
+
+> :material-lightbulb-on-outline:{ .md-icon }  
+> **Tänk ett Space som ett “projekt-rum”**: alla som bjuds in ser samma assistenter, data och inställningar.
+
+![Översikt av ett Space](../assets/images/space-overview.png){ width="650" }
+
+---
 
 ## Varför använda Spaces?
 
-!!! info "Varför använda Spaces?"
-    AI utvecklas sällan ensam. Spaces underlättar samarbete genom att erbjuda en central plats för teamarbete.
-
 <div class="grid cards" markdown>
 
--   :material-account-group-outline:{ .md-icon .lg } **Samarbeta**  
-    Arbeta tillsammans med gemensamma AI-assistenter och kunskapsbaser.
+- :material-account-group:{ .md-icon .lg } **Team-work**  
+  Flera personer kan _samtidigt_ bygga och förbättra en AI-tillämpning.
 
--   :material-database-sync-outline:{ .md-icon .lg } **Dela Resurser**  
-    Dela data och kunskapskällor som är specifika för ett projekt eller team.
+- :material-database-sync:{ .md-icon .lg } **Delad kunskap**  
+  En gemensam datakälla = enhetliga svar från assistenterna.
 
--   :material-security:{ .md-icon .lg } **Styra Åtkomst**  
-    Hantera behörigheter (administratör, redaktör, läsare) för olika användare eller grupper.
+- :material-security:{ .md-icon .lg } **Säkerhets­kontroll**  
+  Tillåt bara de AI-modeller som är godkända för projektets data.
 
--   :material-cogs:{ .md-icon .lg } **Anpassa Inställningar**  
-    Konfigurera vilka AI-modeller som får användas inom ett Space, baserat på projektets säkerhetskrav.
+- :material-chart-box-outline:{ .md-icon .lg } **Uppföljning**  
+  Kommande funktioner ger statistik och regelefterlevnad (AI Act, GDPR).
 
 </div>
 
-## Roller och behörigheter
+---
 
-| Roll           | Behörighet                                                    |
-| -------------- | ------------------------------------------------------------- |
-| Administratör  | Skapa, redigera och ta bort Spaces samt hantera behörigheter  |
-| Redaktör       | Redigera innehåll i Space och lägga till assistenter          |
-| Läsare         | Läsa information och interagera med assistenter               |
+## Så funkar det – snabb översikt
 
-[![Inne i ett Space i Intric](assets/images/inne-i-space.png)](assets/images/inne-i-space.png) <!-- Antag att denna bild finns eller läggs till -->
-*Inuti ett Space ser du assistenter, kunskapskällor och inställningar som är unika för just den ytan.*
+```mermaid
 
-## Hur fungerar det?
+graph LR
 
-När du går in i ett specifikt Space ser du endast de assistenter, kunskapskällor och inställningar som hör till just den ytan. Administratörer för ett Space kan:
+    %% ---------- Användare ----------
+    subgraph Användarens Åtkomst
+        direction TB
+        Anv["👤 Användare"]
+    end
 
-1.  **Definiera Tillåtna AI-modeller:** Säkerställ att endast godkända modeller används baserat på datasäkerhetsklassning.
-2.  **Hantera Medlemmar och Behörigheter:** Bjud in kollegor och tilldela roller.
-3.  **Ladda upp och Hantera Data:** Lägg till filer, webbsidor eller anslut API:er till Spacets gemensamma kunskapsbank.
-4.  **Skapa och Utveckla Assistenter:** Bygg AI-assistenter som använder Spacets data och inställningar.
+    %% ---------- Personlig yta ----------
+    subgraph "Personlig yta"
+        direction TB
+        PY[🏠 Personlig Yta]
+        Privata["🔒 Privata Resurser<br><span style='font-size: 0.7em'>Assistenter, Data</span>"]
+        PY --- Privata
+    end
 
-!!! info "Personlig Yta vs. Space"
-    Din **personliga yta** är fortfarande din egen plats för utforskande och individuellt arbete. **Spaces** är till för när ni är **flera som behöver samarbeta** kring samma AI-tillämpningar och data. Se [Skillnad mellan Personlig yta och Space](funktioner/assistenter/skillnad-personlig-vs-space.md) för mer detaljer.
+    %% ---------- Delade ytor ----------
+    subgraph "Delade ytor (Spaces)"
+        direction TB
+        SP1[🏢 Space&nbsp;A]
+        DeladeA["👥 Delade Resurser&nbsp;A"]
+        SP1 --- DeladeA
 
-Spaces är centrala för att gå från individuell AI-användning till organiserat, säkert och effektivt AI-arbete i team och projekt.
+        SP2[🏢 Space&nbsp;B]
+        DeladeB["👥 Delade Resurser&nbsp;B"]
+        SP2 --- DeladeB
+
+        SPn[🏢 ...andra Spaces]
+    end
+
+    %% ---------- Åtkomstpilar ----------
+    Anv --> PY
+    Anv --> SP1
+    Anv --> SP2
+    Anv --> SPn
+
+    %% ---------- Färg & stil ----------
+    style PY fill:#fdf,stroke:#dda0dd,stroke-width:2px
+    style SP1 fill:#e6f2ff,stroke:#99ccff,stroke-width:2px
+    style SP2 fill:#e6f2ff,stroke:#99ccff,stroke-width:2px
+    style SPn fill:#e6f2ff,stroke:#99ccff,stroke-width:2px
+    style Privata fill:#fff4f4,stroke:#f0c4c4,stroke-width:1px
+    style DeladeA fill:#f0f8ff,stroke:#cce0ff,stroke-width:1px
+    style DeladeB fill:#f0f8ff,stroke:#cce0ff,stroke-width:1px
+```
+
+När du klickar in i ett **Space** ser du bara resurser som hör dit – inga personliga assistenter blandas in.
+
+---
+
+## Roller & rättigheter
+
+| Roll            | Kan göra                                                   | Typiskt ansvar |
+|-----------------|------------------------------------------------------------|----------------|
+| **Admin**       | Skapa/ta bort Spaces, invitera medlemmar, ändra modeller   | Produkt-/team-ägare |
+| **Redaktör**    | Ladda upp data, skapa/ändra assistenter                    | Utvecklare, subject-matter-experts |
+| **Läsare**      | Använda färdiga assistenter, se data (läsbart)             | Slut­användare, testare |
+
+!!! note
+    Roller kan också sättas via **Azure AD-grupper** eller liknande – fråga IT-admin om ni använder gruppsynk.
+
+---
+
+## Skapa ett Space – steg för steg
+
+1. Gå till fliken **Spaces** → klicka **Create space**.  
+2. Döp Spacet (ex. *“Samarbetsyta: Ekonomi-bot”*).  
+3. (Valfritt) <kbd>Invite members</kbd> och välj roll.  
+4. I **Settings** → välj vilka **completion-** och **embedding-modeller** som får användas.  
+5. Ladda upp data under **Knowledge** eller skapa nya **assistenter**.
+
+![Menyexempel – Assistants · Knowledge · Members · Settings](../assets/images/space-menu.png){ width="650" }
+
+---
+
+## Typiskt arbetsflöde
+
+1. **Initiera** – Admin skapar Spacet och sätter säkerhetsnivå.  
+2. **Dela data** – Redaktörer laddar upp filer eller kopplar webb-crawl.  
+3. **Bygg assistenter** – Alla i teamet itererar på prompt, bilagor och RAG.  
+4. **Testa** – Läsare provar, ger feedback via Insights.  
+5. **Gå live** – Admin markerar *Production mode* (låser kritiska inställningar).  
+6. **Förvalta** – Teamet följer upp statistik och justerar vid behov.
+
+---
+
+## Vanliga frågor
+
+| Fråga | Kort svar |
+|-------|-----------|
+| **Kan jag flytta en assistent till ett Space?** | Ja – öppna assistenten, **Duplicate → välj Space**. |
+| **Hur begränsar jag modeller?** | *Space → Settings → Completion models* – slå av/på per modell. |
+| **Går det att ha flera Spaces?** | Obegränsat. Ett för varje projekt, test­miljö eller avdelning. |
+| **Blir data publik?** | Nej, data stannar i Spacet och ärvs inte till andra Spaces. |
+| **Vad händer om jag tar bort ett Space?** | Allt raderas (assistenter, data, loggar). Exportera först om du vill spara. |
+
+---
+
+## Bästa praxis
+
+* **Ett syfte per Space** – tydlig gräns mellan projekt sparar tid och säkerhets­granskning  
+* **Minsta nödvändiga modell‐lista** – slå bara på modeller som uppfyller säkerhets­kraven  
+* **Dokumentera prompt & data** – lägg “Läs-mig-först” som bilaga för snabb onboarding  
+* **Sätt versionstaggar** – använd *Production mode* när tillämpningen går live  
+* **Granska loggar** – utnyttja kommande Insights-fliken för att följa upp kvalitet & regelefterlevnad  
+
+---
+
+## Relaterade ämnen
+
+- [Skillnad mellan personlig yta och Space](funktioner/assistenter/skillnad-personlig-vs-space.md)  
+- [Skapa assistenter](../assistenter/skapa-assistenter.md)  
+- [Vad är RAG?](../kunskapsbaser/vad-ar-rag.md)  
+- [Vad är crawling?](../kunskapsbaser/vad-ar-crawling.md)

@@ -1,54 +1,51 @@
-# mkdocs.yml - Uppdaterad och Korrigerad
-
-site_name: "Intric Dokumentation" # Ändrat här!
-site_description: "Användardokumentation för Intric" # Ändrat här!
+site_name: "Intric Dokumentation"
+site_description: "Användardokumentation för Intric"
 site_author: "Sundsvalls kommun / Intric Team"
 
-
-repo_url: https://github.com/sundsvallai/intric # T.ex. [https://github.com/din-organisation/ditt-repo](https://github.com/din-organisation/ditt-repo)
-repo_name: 'GitHub' # Eller GitLab, Bitbucket etc. (Namnet som visas på länken)
-edit_uri: 'edit/main/docs/' # Eller 'blob/main/docs/' för "View Source". Anpassa 'main' om du använder en annan branch. Anpassa /docs/ om dina filer ligger någon annanstans.
+repo_url: https://github.com/sundsvallai/intric
+repo_name: 'GitHub'
+edit_uri: 'edit/main/docs/'
 
 extra:
-  platform_name: "Intric" # Behåll denna ifall ni vill referera till den i texten senare
+  platform_name: "Intric" # Korrekt indragning
 
 theme:
-  name: material
-  custom_dir: overrides # Används för anpassningar (t.ex. färger/typsnitt via CSS)
+  name: material # Denna SKA vara med
+  custom_dir: overrides
   language: sv
   features:
     - navigation.tabs
     - navigation.instant
     - navigation.tracking
     - navigation.top
-    - navigation.expand
-    - navigation.sections # Lägg till denna rad
+    - navigation.expand # Bra för vänsternavigering
+    - navigation.sections # Visar sektioner i vänsternavigering tydligare
     - search.suggest
     - search.highlight
     - content.tabs.link
     - content.code.copy
-  palette: # Inställningar för ljust/mörkt läge
+  palette:
     - media: "(prefers-color-scheme: light)"
-      scheme: default # Namn på ljust schema (används i extra.css)
+      scheme: default
       toggle:
         icon: material/brightness-auto
         name: Byt till mörkt läge
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate # Namn på mörkt schema (används i extra.css)
+      scheme: slate
       toggle:
         icon: material/brightness-auto
         name: Byt till ljust läge
-  font: # Typsnittsinställningar
+  font:
     text: Arial
     code: Roboto Mono
-  icon: # Logotyp och favicon (se till att filerna finns!)
+  icon:
     logo: assets/images/logo.svg
     favicon: assets/images/favicon.png
 
-extra_css: # Länk till anpassad CSS
+extra_css:
   - stylesheets/extra.css
 
-markdown_extensions: # Tillägg för extra Markdown-funktioner
+markdown_extensions:
   - admonition
   - attr_list
   - md_in_html
@@ -60,22 +57,28 @@ markdown_extensions: # Tillägg för extra Markdown-funktioner
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences: # Konfiguration för bl.a. Mermaid
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed: # För content tabs (kan tas bort om du inte använder)
+      alternate_style: true
   - toc:
       permalink: true
-      toc_depth: 3 # Visa rubriker ner till nivå H3 i innehållsförteckningen
+      toc_depth: 3
 
-plugins: # Aktiverade plugins
-  - search # Inbyggd sökfunktion
-  - awesome-pages # För automatisk navigering (se nedan)
+plugins:
+  - search
+  - awesome-pages
   - minify
-  - mermaid2
   - redirects
-  # - git-revision-date-localized: # Kommenterad bort för att slippa varningar
+  - mermaid2
+  # - git-revision-date-localized:
   #     type: date
   #     locale: sv
   #     fallback_to_build_date: true
-  - glightbox: # För bildvisning
+  - glightbox:
       touchNavigation: true
       loop: false
       effect: zoom
@@ -85,19 +88,4 @@ plugins: # Aktiverade plugins
       zoomable: true
       draggable: true
 
-# nav: <-- VIKTIGT: Hela denna sektion är bortkommenterad
-#  - Hem: index.md
-#  - Kom igång:
-#      - Vad är en prompt?: kom-igang/vad-ar-en-prompt.md
-#      - Hur promptar man effektivt?: kom-igang/hur-promptar-man.md
-#  - Funktioner:
-#      - Assistenter:
-#          - Vad är en assistent?: funktioner/assistenter/vad-ar-en-assistent.md
-#          - Hur skapar man assistenter?: funktioner/assistenter/skapa-assistenter.md
-#          - Skillnad personlig vs Space: funktioner/assistenter/skillnad-personlig-vs-space.md
-#      - Spaces:
-#          - Vad är ett Space?: funktioner/spaces/vad-ar-ett-space.md
-#      - Kunskapsbaser:
-#          - Vad är crawling?: funktioner/kunskapsbaser/vad-ar-crawling.md
-#          # Borttagen: - Hur gör man crawling?: funktioner/kunskapsbaser/hur-gor-man-crawling.md
-# # Borttagen: - Om Intric: om.md
+# nav: är bortkommenterad tack vare awesome-pages
